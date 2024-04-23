@@ -1,3 +1,15 @@
 spring:
   application:
-    name: cliente
+    name: clientes
+
+# na porta 0, a aplicação vai subir um porta randômica. Dessa forma, não preciso vir e ficar informando cada instância
+server:
+  port: 0
+
+# onde está o servidor Eureka e o ID da instância no Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
